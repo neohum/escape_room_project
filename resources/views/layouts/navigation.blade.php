@@ -15,9 +15,7 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('방탈출 게임 리스트') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('tasks.index')" :active="request()->routeIs('tasks.index')">
-                        {{ __('Tasks') }}
-                    </x-nav-link>
+                 
                     <x-nav-link :href="route('game.index')" :active="request()->routeIs('game.index')">
                         {{ __('방탈출 게임 만들기') }}
                     </x-nav-link>
@@ -76,9 +74,7 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('tasks.index')" :active="request()->routeIs('tasks.index')">
-                {{ __('Tasks') }}
-            </x-responsive-nav-link>
+            
             <x-responsive-nav-link :href="route('game.index')" :active="request()->routeIs('game.index')">
                 {{ __('방탈출 게임 만들기') }}
             </x-responsive-nav-link>

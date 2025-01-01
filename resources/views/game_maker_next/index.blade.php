@@ -19,26 +19,75 @@
                      <!-- Title for uncompleted tasks -->
                     <h3 class="mb-4 text-lg font-semibold leading-tight text-white-800">컨텐츠 생성 화면</h3>
                     <!-- Table to display uncompleted tasks -->
-                    <form action="{{ route('game.store') }}" method="post" class="mt-6 space" enctype="multipart/form-data">
+                    <form action="{{ route('game_maker_next.store') }}" method="post" class="mt-6 space" enctype="multipart/form-data">
                         @csrf
-                        <div>
-                            <x-input-label for="title" value="하위 타이틀" />
-                            <x-text-input id="title" name="title" type="text" class="block w-full mt-1" required autofocus />
-                            <x-input-error class="mt-2" :messages="$errors->get('title')" />
-                              
+                        <div class="text-black bg-white ">
+                           
+                          <textarea id="summernote" class="text-black bg-white" name="editorjs"></textarea>
                         </div>
                         
-                         <x-input-label for="image" value="Info File" /> {{-- Label for info file --}}
-                            <label class="block mt-2">
-                                <span class="sr-only">Choose file</span> {{-- Screen reader text --}}
-                                <input type="file" id="image" name="image" accept=".jpg,.jpeg,.gif,.JPEG,.JPG,.GIF,.png" class="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100 " /> {{-- File input field --}}
-                            </label>
-                        <button type="submit" class="px-4 py-2 mt-4 text-sm font-semibold leading-5 text-white transition duration-150 ease-in-out rounded-lg bg-violet-600 hover:bg-violet-500 focus:outline-none focus:shadow-outline-violet active:bg-violet-600">
-                            {{ '게임 만들기' }}
-                        </button>
+                        <div class="mt-4">
+                            <h2 class="text-lg font-semibold leading-tight text-white-800">원하는 문제의 형태를 선택하세요</h2>
+                  
+                            <select name="select" id="select" class="block w-full py-4 mt-10 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-900 dark:border-gray-600 dark:focus:border-indigo-500 dark:focus:ring-indigo-500 dark:focus:ring-opacity-50">
+                                <option value="0">문제 유형 선택</option> 
+                                <option value="1" >5지선다</option>
+                                <option value="2">3지선다</option>
+                                <option value="3">ox문제</option>
+                                <option value="4">다답형</option>
+                                <option value="5">주관식</option>
+                                
+                        </select>
+                        </div>
+                        <br>
+                        
+                        <input hidden name="prev_id" value="{{ $prev_id }}">
+                        <div id="input_area"></div>
+                        <div class="flex flex-auto mt-4">
+                          <div class="flex-auto">
+                            
+                              <button type="submit" class="px-4 py-2 mt-4 text-sm font-semibold leading-5 text-white transition duration-150 ease-in-out rounded-lg bg-violet-600 hover:bg-violet-500 focus:outline-none focus:shadow-outline-violet active:bg-violet-600">
+                                {{ '다음 페이지 만들기' }}
+                              </button>
+                          </div>
+                          <a href="{{ route('dashboard') }}" type="submit" class="px-4 py-2 mt-4 text-sm font-semibold leading-5 text-white transition duration-150 ease-in-out bg-red-600 rounded-lg px- hover:bg-red-500 focus:outline-none focus:shadow-outline-violet active:bg-red-600">
+                            {{ '종료하기' }}
+                          </a>
                     </form>
+          
+                
                 </div>
             </div>
         </div>
     </div>
+    <script text="text/javascript">
+        document.getElementById('select').addEventListener('change', function() {
+            var select = document.getElementById('select');
+            var value = select.options[select.selectedIndex].value;
+            if(value == 1) {
+                document.getElementById('input_area').innerHTML = `
+                    <x-input-5radio name="radio" id="radio" required autofocus />
+                `;
+            } else if(value == 2) {
+                document.getElementById('input_area').innerHTML = `
+                    <x-input-3radio name="radio" id="radio" required autofocus />
+                `;
+            } else if(value == 3) {
+                document.getElementById('input_area').innerHTML = `
+                    <x-input-2radio name="radio" id="radio" required autofocus />
+                `;
+            } else if(value == 4) {
+                document.getElementById('input_area').innerHTML = `
+                    <x-input-5checkbox name="radio" id="radio" required autofocus />
+                `;
+            } else if(value == 5) {
+                document.getElementById('input_area').innerHTML = `
+                    <x-input-one-answer name="radio" id="radio" required autofocus />
+                `;
+            } 
+        });
+        
+            
+       
+    </script>
 </x-app-layout>

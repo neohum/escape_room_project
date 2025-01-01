@@ -10,9 +10,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [App\Http\Controllers\DashBoardController::class, 'index'])
+->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -24,9 +23,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/tasks/{task}/mark-uncompleted', [TaskController::class, 'markUncompleted'])->name('tasks.mark-uncompleted');
 
     Route::resource('game', GameMakerController::class);
-    Route::get('/game_maker_next/{prev_id}', [GameMakerNextController::class, 'index'])->name('game_maker_next');
     Route::POST('/post/upload', [GameMakerController::class, 'upload'])->name('post.upload');
 
+    Route::get('/game_maker_next/{prev_id}', [GameMakerNextController::class, 'index'])->name('game_maker_next');
+    Route::POST('/game_maker_next/store', [GameMakerNextController::class, 'store'])->name('game_maker_next.store');
+    Route::get('/game_maker_next/show/{id}', [GameMakerNextController::class, 'show'])->name('game_maker_next.show');
+    
 });
 
 require __DIR__.'/auth.php';
