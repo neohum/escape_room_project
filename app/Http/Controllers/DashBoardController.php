@@ -13,6 +13,7 @@ class DashBoardController extends Controller
         $query = DB::table('game_makers')
         ->where('user_id', Auth::id())
         ->where('prev_id', '0')
+        ->orderBy('id', 'desc')
         ->get();
         // You can return the query result or pass it to a view
         return view('dashboard', ['query' => $query]);
