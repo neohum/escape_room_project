@@ -35,17 +35,17 @@ class GameMakerController extends Controller
     public function store(Request $request): RedirectResponse
     {
         //
-  
+
 
         $uuid = Uuid::uuid4()->toString();
         $validated['title'] = $request->title;
         $validated['editorjs'] = $request->editorjs;
-        
+
         $validated['user_id'] = Auth::user()->id;
         $validated['prev_id'] = '0';
         $validated['next_id'] = $uuid;
 
-    
+
 
         $create = GameMaker::create($validated);
 
@@ -72,6 +72,7 @@ class GameMakerController extends Controller
     public function edit(string $id)
     {
         //
+
     }
 
     /**
@@ -106,7 +107,7 @@ class GameMakerController extends Controller
 
         $extensions = array(
             'png', 'jpg', 'jpeg', 'jpe', 'gif', 'svg', 'bmp', 'ico',
-          
+
         );
 
         if (!in_array(strtolower($uploadedFile->getClientOriginalExtension()), $extensions)) {
@@ -118,9 +119,9 @@ class GameMakerController extends Controller
         /**
            * Save File
          **/
-  
+
         $file = Storage::upload($uploadedFile, 'public/editor');
-        $r->url = sprintf("/storage/app/%s/%s", $file->path, $file->filename); 
+        $r->url = sprintf("/storage/app/%s/%s", $file->path, $file->filename);
 
         return json_encode($r);
     }

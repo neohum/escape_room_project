@@ -9,7 +9,7 @@
                 {{ '방탈출 게임 만들기' }} <!-- Static title -->
             </h2>
             <!-- Link to add a new task -->
-            </div>
+         </div>
     </x-slot>
 
     <div class="py-12">
@@ -18,43 +18,40 @@
                 <div class="p-6 text-white">
                      <!-- Title for uncompleted tasks -->
                     <h3 class="mb-4 text-lg font-semibold leading-tight text-white-800">컨텐츠 생성 화면</h3>
+
                     <!-- Table to display uncompleted tasks -->
-                    <form action="{{ route('game_maker_next.store') }}" method="post" class="mt-6 space" enctype="multipart/form-data">
+                    <form action="{{ route('game_maker_next.update', ['id' => $game_data->id]) }}"  method="POST" class="mt-6 space" enctype="multipart/form-data">
+
                         @csrf
-                        <div class="text-black bg-white ">
+                        <div class="bg-slate-800 text-white ">
 
-                          <textarea id="summernote" class="text-black bg-white" name="editorjs"></textarea>
+                           <h1 class="mt-4">활동명 </h1>
+                            <input type="text" name="title" class="input input-bordered w-full max-w-xs" value="{{ $game_data->choice1 }}" />
+
+
+                        </div>
+                        <div class = "bg-white text-black mt-4">
+                            <textarea id="summernote" class="text-black bg-white mt-4" name="editorjs">{{ $game_data->editorjs }}</textarea>
                         </div>
 
-                        <div class="mt-4">
-                            <h2 class="text-lg font-semibold leading-tight text-white-800">원하는 문제의 형태를 선택하세요</h2>
-
-                            <select name="select" id="select" class="block w-full py-4 mt-10 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-900 dark:border-gray-600 dark:focus:border-indigo-500 dark:focus:ring-indigo-500 dark:focus:ring-opacity-50">
-                                <option value="0">문제 유형 선택</option>
-                                <option value="1" >5지선다</option>
-                                <option value="2">3지선다</option>
-                                <option value="3">ox문제</option>
-                                <option value="4">다답형</option>
-                                <option value="5">주관식</option>
-
-                        </select>
-                        </div>
                         <br>
 
-                        <input hidden name="prev_id" value="{{ $prev_id }}">
+                        <input hidden name="prev_id" value="{{ $game_data->next_id }}">
                         <div id="input_area"></div>
-                        <div class="flex flex-auto justify-between mt-4">
-                          <div class="flex-auto">
+                        <div class="flex flex-auto mt-4">
 
-                              <button type="submit" class="px-4 py-2 mt-4 text-sm font-semibold leading-5 text-white transition duration-150 ease-in-out rounded-lg bg-violet-600 hover:bg-violet-500 focus:outline-none focus:shadow-outline-violet active:bg-violet-600">
-                                {{ '다음 페이지 만들기' }}
-                              </button>
-                          </div>
-
-                          <button type="submit" class="px-4 py-2 mt-4 text-sm font-semibold leading-5 text-white transition duration-150 ease-in-out bg-red-600 rounded-lg px- hover:bg-red-500 focus:outline-none focus:shadow-outline-violet active:bg-red-600">
+                          @if ($game_data->next_id == '0')
+                          <a href="{{ route('dashboard') }}" type="submit" class="px-4 py-2 mt-4 text-sm font-semibold leading-5 text-white transition duration-150 ease-in-out bg-red-600 rounded-lg px- hover:bg-red-500 focus:outline-none focus:shadow-outline-violet active:bg-red-600">
                             {{ '종료하기' }}
-                          </button>
-                        </div>
+                          </a>
+                          @else
+                                <div class="justify-between flex flex-auto">
+
+                                    <button type="submit" class="px-4 py-2 mt-4 text-sm font-semibold leading-5 text-white transition duration-150 ease-in-out rounded-lg bg-violet-600 hover:bg-violet-500 focus:outline-none focus:shadow-outline-violet active:bg-violet-600">
+                                        {{ '다음 페이지 편집하기' }}
+                                    </button>
+                                </div>
+                          @endif
                     </form>
 
 

@@ -18,10 +18,10 @@
                             <br>
                             <div class="card-body">
                                 <div class="card-actions justify-between flex flex-auto px-6 py-4">
-                                    <button class="btn btn-primary mt-4">편집하기</button>
+                                    <a href="{{ route('game_maker_next.edit', $q->id) }}" class="btn btn-primary mt-4">편집하기</a>
                                     <div class="justify-between">
                                     </div>
-                                    <button class="btn btn-primary mt-4 justify-end">결과 보기</button>
+                                    <a href="{{ route('game_maker_next.show',$q->id) }}" class="btn btn-primary mt-4 justify-end">결과 보기</a>
                                 </div>
                             </div>
                         </div>
