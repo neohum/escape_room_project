@@ -17,7 +17,7 @@ class GameMakerNextController extends Controller
     {
         //
         $prev_id = $request->route('prev_id');
-      
+
         return response()->view('game_maker_next.index', ['prev_id' => $prev_id]);
     }
 
@@ -27,6 +27,7 @@ class GameMakerNextController extends Controller
     public function create()
     {
         //
+
     }
 
     /**
@@ -37,7 +38,7 @@ class GameMakerNextController extends Controller
         //
         $uuid = Uuid::uuid4()->toString();
         if($request->select == '1'){
-           
+
             DB::table('game_makers')->insert([
                 'user_id' => Auth::id(),
                 'editorjs' => $request->editorjs,
@@ -57,7 +58,7 @@ class GameMakerNextController extends Controller
                 'next_id' => $uuid,
                 'created_at' => now(),
                 'updated_at' => now()
-            ] 
+            ]
           );
           return to_route('game_maker_next', ['prev_id' => $uuid]);
         } elseif($request->select == '2'){
@@ -127,7 +128,7 @@ class GameMakerNextController extends Controller
             ]);
             return to_route('game_maker_next', ['prev_id' => $uuid]);
         } else {
-        
+
             DB::table('game_makers')->insert([
               'user_id' => Auth::id(),
               'editorjs' => $request->editorjs,
@@ -150,7 +151,7 @@ class GameMakerNextController extends Controller
             ]);
             return to_route('game_maker_next', ['prev_id' => $uuid]);
         }
-        
+
 
     }
 
@@ -160,7 +161,7 @@ class GameMakerNextController extends Controller
     public function show(string $id)
     {
         //
-        
+
     }
 
     /**
@@ -169,6 +170,12 @@ class GameMakerNextController extends Controller
     public function edit(string $id)
     {
         //
+        $game = DB::table('game_makers')
+            ->where('id', $id)
+            ->get();
+        $game_data = json_decode($game);
+//        dd($game_data);
+        return response()->view('game_maker_next.edit', ['game_data' => $game_data[0]]);
     }
 
     /**
@@ -177,8 +184,47 @@ class GameMakerNextController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $game_data = DB::table('game_makers')
+            ->where('id', $id)
+            ->update([
+                'title' => $request->title,
+                'editorjs' => $request->editorjs
+            ]);
+        //$prev_id = $request->next_id;
+        $prev_id = $request->prev_id;
+
+
+        return to_route('game_maker_next.editnext', ['prev_id' => $prev_id]);
     }
 
+    /**
+     * editnext
+     */
+    public function editnext(Request $request)
+    {
+        $prev_id = $request->route('prev_id');
+        $game_maker = DB::table('game_makers')
+            ->where('prev_id', $prev_id)
+            ->get();
+
+        $game_maker = json_decode($game_maker);
+//        dd($game_maker);
+
+        return response()->view('game_maker_next.editnext', ['prev_id' => $prev_id, 'game_maker' => $game_maker[0]]);
+    }
+
+    /**
+     * editnext update
+     */
+    public function editnextupdate(Request $request)
+    {
+        $prev_id = $request->route('prev_id');
+        $game_maker = DB::table('game_makers')
+            ->where('prev_id', $prev_id)
+            ->get();
+        $game_maker = json_decode($game_maker);
+        return response()->view('game_maker_next.editnext', ['prev_id' => $prev_id, 'game_maker' => $game_maker[0]]);
+    }
     /**
      * Remove the specified resource from storage.
      */

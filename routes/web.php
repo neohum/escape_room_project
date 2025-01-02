@@ -18,9 +18,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::resource('tasks', TaskController::class);
-    Route::get('/tasks/{task}/mark-completed', [TaskController::class, 'markCompleted'])->name('tasks.mark-completed');
-    Route::get('/tasks/{task}/mark-uncompleted', [TaskController::class, 'markUncompleted'])->name('tasks.mark-uncompleted');
+//    Route::resource('tasks', TaskController::class);
+//    Route::get('/tasks/{task}/mark-completed', [TaskController::class, 'markCompleted'])->name('tasks.mark-completed');
+//    Route::get('/tasks/{task}/mark-uncompleted', [TaskController::class, 'markUncompleted'])->name('tasks.mark-uncompleted');
 
     Route::resource('game', GameMakerController::class);
     Route::POST('/post/upload', [GameMakerController::class, 'upload'])->name('post.upload');
@@ -28,7 +28,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/game_maker_next/{prev_id}', [GameMakerNextController::class, 'index'])->name('game_maker_next');
     Route::POST('/game_maker_next/store', [GameMakerNextController::class, 'store'])->name('game_maker_next.store');
     Route::get('/game_maker_next/show/{id}', [GameMakerNextController::class, 'show'])->name('game_maker_next.show');
-    
+    Route::get('/game_maker_next/edit/{id}', [GameMakerNextController::class, 'edit'])->name('game_maker_next.edit');
+    Route::POST('/game_maker_next/update/{id}', [GameMakerNextController::class, 'update'])->name('game_maker_next.update');
+    Route::get('/game_maker_next/editnext/{prev_id}', [GameMakerNextController::class, 'editnext'])->name('game_maker_next.editnext');
+    Route::POST('/game_maker_next/editnextupdate/{prev_id}', [GameMakerNextController::class, 'editnextupdate'])->name('game_maker_next.editnextupdate');
+
 });
 
 require __DIR__.'/auth.php';
