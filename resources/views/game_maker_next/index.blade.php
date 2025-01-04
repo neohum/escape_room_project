@@ -42,6 +42,7 @@
                         <br>
 
                         <input hidden name="prev_id" value="{{ $prev_id }}">
+                        <input hidden name="title" value="{{ $title }}">
                         <div id="input_area"></div>
                         <div class="flex flex-auto justify-between mt-4">
                           <div class="flex-auto">
@@ -50,13 +51,39 @@
                                 {{ '다음 페이지 만들기' }}
                               </button>
                           </div>
+                            <div class="text-red-600">
+                                "종료 하기를 클릭 하시면 현재 페이지도 저장이 됩니다.
+                            </div>
 
-                          <button type="submit" class="px-4 py-2 mt-4 text-sm font-semibold leading-5 text-white transition duration-150 ease-in-out bg-red-600 rounded-lg px- hover:bg-red-500 focus:outline-none focus:shadow-outline-violet active:bg-red-600">
-                            {{ '종료하기' }}
-                          </button>
+
+
+
+
                         </div>
                     </form>
-
+                    <form method="post" action="{{ route('game_maker_next.finish') }}" >
+                        @csrf
+                        <input hidden name="title">
+                        <input hidden name="user_id">
+                        <input hidden name="editorjs" >
+                        <input hidden name="select" >
+                        <input hidden name="question" >
+                        <input hidden name="radio1">
+                        <input hidden name="radio2" >
+                        <input hidden name="radio3" >
+                        <input hidden name="radio4" >
+                        <input hidden name="radio5" >
+                        <input hidden name="answer1" >
+                        <input hidden name="answer2" >
+                        <input hidden name="answer3" >
+                        <input hidden name="answer4" >
+                        <input hidden name="answer5" >
+                        <input hidden name="next_id" >
+                        <input hidden name="prev_id">
+                        <button type="submit" class="px-4 py-2 mt-4 text-sm font-semibold leading-5 text-white transition duration-150 ease-in-out bg-red-600 rounded-lg px- hover:bg-red-500 focus:outline-none focus:shadow-outline-violet active:bg-red-600">
+                            {{ '종료하기' }}
+                        </button>
+                    </form>
 
                 </div>
             </div>

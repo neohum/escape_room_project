@@ -25,24 +25,24 @@
                             <x-input-label for="title" value="게임 제목" />
                             <x-text-input id="title" name="title" type="text" class="block w-full mt-1" required autofocus />
                             <x-input-error class="mt-2" :messages="$errors->get('title')" />
-                              
+
                         </div>
                         <div class="mt-4">
                             <x-input-label for="description" value="게임 설명" />
-                         
+
                         </div>
                         <div class="text-black bg-white ">
-                           
-                          <textarea id="summernote" class="text-black bg-white" name="editorjs"></textarea>
+
+                          <textarea id="summernote" class="text-black bg-white" name="editorjs" required autofocus></textarea>
                         </div>
-                        
-                        
+
+
                         <div class="mt-4">
                           <button type="submit" class="px-4 py-2 mt-4 text-sm font-semibold leading-5 text-white transition duration-150 ease-in-out rounded-lg bg-violet-600 hover:bg-violet-500 focus:outline-none focus:shadow-outline-violet active:bg-violet-600">
                             {{ '게임 만들기' }}
                           </button>
                         </div>
-                        
+
                     </form>
                 </div>
             </div>

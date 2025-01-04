@@ -14,7 +14,8 @@ class DashBoardController extends Controller
         ->where('user_id', Auth::id())
         ->where('prev_id', '0')
         ->orderBy('id', 'desc')
-        ->get();
+        ->paginate(5);
+
         // You can return the query result or pass it to a view
         return view('dashboard', ['query' => $query]);
     }

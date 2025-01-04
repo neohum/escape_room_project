@@ -31,6 +31,10 @@
 
                     @endforeach
                 </div>
+                <div class="join">
+                    {{ $query->links() }}
+                </div>
+
             </div>
         </div>
     </div>
