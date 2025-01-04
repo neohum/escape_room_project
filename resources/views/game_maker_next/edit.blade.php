@@ -26,7 +26,7 @@
                         <div class="bg-slate-800 text-white ">
 
                            <h1 class="mt-4">활동명 </h1>
-                            <input type="text" name="title" class="input input-bordered w-full max-w-xs" value="{{ $game_data->choice1 }}" />
+                            <input type="text" name="title" class="input input-bordered w-full max-w-xs" value="{{ $game_data->title }}" />
 
 
                         </div>

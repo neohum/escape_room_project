@@ -17,8 +17,9 @@ class GameMakerNextController extends Controller
     {
         //
         $prev_id = $request->route('prev_id');
+        $title = $request->route('title');
 
-        return response()->view('game_maker_next.index', ['prev_id' => $prev_id]);
+        return response()->view('game_maker_next.index', ['prev_id' => $prev_id, 'title' => $title]);
     }
 
     /**
@@ -41,6 +42,7 @@ class GameMakerNextController extends Controller
 
             DB::table('game_makers')->insert([
                 'user_id' => Auth::id(),
+                'title' => $request->title,
                 'editorjs' => $request->editorjs,
                 'select' => $request->select,
                 'question' => $request->question,
@@ -64,6 +66,7 @@ class GameMakerNextController extends Controller
         } elseif($request->select == '2'){
             DB::table('game_makers')->insert([
               'user_id' => Auth::id(),
+                'title' => $request->title,
               'editorjs' => $request->editorjs,
               'select' => $request->select,
               'question' => $request->question,
@@ -86,6 +89,7 @@ class GameMakerNextController extends Controller
         } elseif($request->select == '3'){
             DB::table('game_makers')->insert([
               'user_id' => Auth::id(),
+                'title' => $request->title,
               'editorjs' => $request->editorjs,
               'select' => $request->select,
               'question' => $request->question,
@@ -108,6 +112,7 @@ class GameMakerNextController extends Controller
         } elseif($request->select == '4'){
             DB::table('game_makers')->insert([
               'user_id' => Auth::id(),
+                'title' => $request->title,
               'editorjs' => $request->editorjs,
               'select' => $request->select,
               'question' => $request->question,
@@ -131,6 +136,7 @@ class GameMakerNextController extends Controller
 
             DB::table('game_makers')->insert([
               'user_id' => Auth::id(),
+                'title' => $request->title,
               'editorjs' => $request->editorjs,
               'question' => $request->question,
               'select' => $request->select,
@@ -207,10 +213,16 @@ class GameMakerNextController extends Controller
             ->where('prev_id', $prev_id)
             ->get();
 
-        $game_maker = json_decode($game_maker);
+        //$game_maker = json_decode($game_maker);
 //        dd($game_maker);
+        $game_end = $game_maker->count();
+//        dd($game_end);
+        if ($game_end === 0) {
+            return to_route('dashboard');
+        } else {
+            return response()->view('game_maker_next.editnext', ['prev_id' => $prev_id, 'game_maker' => $game_maker[0]]);
 
-        return response()->view('game_maker_next.editnext', ['prev_id' => $prev_id, 'game_maker' => $game_maker[0]]);
+        }
     }
 
     /**
@@ -219,12 +231,150 @@ class GameMakerNextController extends Controller
     public function editnextupdate(Request $request)
     {
         $prev_id = $request->route('prev_id');
+        $title = $request->route('title');
         $game_maker = DB::table('game_makers')
             ->where('prev_id', $prev_id)
             ->get();
-        $game_maker = json_decode($game_maker);
-        return response()->view('game_maker_next.editnext', ['prev_id' => $prev_id, 'game_maker' => $game_maker[0]]);
+        $game_end = $game_maker->count();
+        if ($game_end === 0) {
+            return to_route('dashboard');
+        } else
+        {
+            return response()->view('game_maker_next.editnext', ['prev_id' => $prev_id,'titl' => $title, 'game_maker' => $game_maker[0]]);
+        }
+
     }
+    /**
+     *  editnext save
+     */
+
+    /**
+     * finish
+     */
+    public function finish(Request $request)
+    {
+        $uuid = Uuid::uuid4()->toString();
+        if($request->select == '1'){
+
+            DB::table('game_makers')->insert([
+                    'user_id' => Auth::id(),
+                    'title' => $request->title,
+                    'editorjs' => $request->editorjs,
+                    'select' => $request->select,
+                    'question' => $request->question,
+                    'answer1' => $request->check1,
+                    'answer2' => $request->check2,
+                    'answer3' => $request->check3,
+                    'answer4' => $request->check4,
+                    'answer5' => $request->check5,
+                    'choice1' => $request->radio1,
+                    'choice2' => $request->radio2,
+                    'choice3' => $request->radio3,
+                    'choice4' => $request->radio4,
+                    'choice5' => $request->radio5,
+                    'prev_id' => $request->prev_id,
+                    'next_id' => $uuid,
+                    'created_at' => now(),
+                    'updated_at' => now()
+                ]
+            );
+            return to_route('dashboard');
+        } elseif($request->select == '2'){
+            DB::table('game_makers')->insert([
+                'user_id' => Auth::id(),
+                'title' => $request->title,
+                'editorjs' => $request->editorjs,
+                'select' => $request->select,
+                'question' => $request->question,
+                'answer1' => $request->check1,
+                'answer2' => $request->check2,
+                'answer3' => $request->check3,
+                'answer4' => $request->check4,
+                'answer5' => $request->check5,
+                'choice1' => $request->radio1,
+                'choice2' => $request->radio2,
+                'choice3' => $request->radio3,
+                'choice4' => $request->radio4,
+                'choice5' => $request->radio5,
+                'prev_id' => $request->prev_id,
+                'next_id' => $uuid,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
+            return to_route('dashboard');
+        } elseif($request->select == '3'){
+            DB::table('game_makers')->insert([
+                'user_id' => Auth::id(),
+                'title' => $request->title,
+                'editorjs' => $request->editorjs,
+                'select' => $request->select,
+                'question' => $request->question,
+                'answer1' => $request->check1,
+                'answer2' => $request->check2,
+                'answer3' => $request->check3,
+                'answer4' => $request->check4,
+                'answer5' => $request->check5,
+                'choice1' => $request->radio1,
+                'choice2' => $request->radio2,
+                'choice3' => $request->radio3,
+                'choice4' => $request->radio4,
+                'choice5' => $request->radio5,
+                'prev_id' => $request->prev_id,
+                'next_id' => $uuid,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
+            return to_route('dashboard');
+        } elseif($request->select == '4'){
+            DB::table('game_makers')->insert([
+                'user_id' => Auth::id(),
+                'title' => $request->title,
+                'editorjs' => $request->editorjs,
+                'select' => $request->select,
+                'question' => $request->question,
+                'answer1' => $request->check1,
+                'answer2' => $request->check2,
+                'answer3' => $request->check3,
+                'answer4' => $request->check4,
+                'answer5' => $request->check5,
+                'choice1' => $request->radio1,
+                'choice2' => $request->radio2,
+                'choice3' => $request->radio3,
+                'choice4' => $request->radio4,
+                'choice5' => $request->radio5,
+                'prev_id' => $request->prev_id,
+                'next_id' => $uuid,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
+            return to_route('dashboard');
+        } else {
+
+            DB::table('game_makers')->insert([
+                'user_id' => Auth::id(),
+                'title' => $request->title,
+                'editorjs' => $request->editorjs,
+                'question' => $request->question,
+                'select' => $request->select,
+                'answer1' => $request->check1,
+                'answer2' => $request->check2,
+                'answer3' => $request->check3,
+                'answer4' => $request->check4,
+                'answer5' => $request->check5,
+                'choice1' => $request->radio1,
+                'choice2' => $request->radio2,
+                'choice3' => $request->radio3,
+                'choice4' => $request->radio4,
+                'choice5' => $request->radio5,
+                'prev_id' => $request->prev_id,
+                'next_id' => $uuid,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
+            return to_route('dashboard');
+        }
+    }
+
     /**
      * Remove the specified resource from storage.
      */

@@ -27,6 +27,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/game_maker_next/{prev_id}', [GameMakerNextController::class, 'index'])->name('game_maker_next');
     Route::POST('/game_maker_next/store', [GameMakerNextController::class, 'store'])->name('game_maker_next.store');
+    Route::POST('/game_maker_next/finish', [GameMakerNextController::class, 'finish'])->name('game_maker_next.finish');
+    Route::POST('/game_maker_next/save/{prev_id}', [GameMakerNextController::class, 'save'])->name('game_maker_next.save');
     Route::get('/game_maker_next/show/{id}', [GameMakerNextController::class, 'show'])->name('game_maker_next.show');
     Route::get('/game_maker_next/edit/{id}', [GameMakerNextController::class, 'edit'])->name('game_maker_next.edit');
     Route::POST('/game_maker_next/update/{id}', [GameMakerNextController::class, 'update'])->name('game_maker_next.update');
