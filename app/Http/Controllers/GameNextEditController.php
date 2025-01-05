@@ -118,6 +118,32 @@ class GameNextEditController extends Controller
         return to_route('dashboard');
     }
 
+    public function show(Request $request)
+    {
+
+        $game = DB::table('game_makers')
+            ->where('id', $request->id)
+            ->get();
+
+        $game_data = json_decode($game);
+        return view('game_next_edit.show', ['game_data' => $game_data[0]]);
+    }
+
+    public function show_next(Request $request)
+    {
+
+        $game_data = DB::table('game_makers')
+            ->where('prev_id', $request->prev_id)
+            ->get();
+        if ($game_data->count() === 0) {
+            echo('<button>finish</button>');
+        } else {
+            return view('game_next_edit.show', ['game_data' => $game_data[0]]);
+
+        }
+
+    }
+
 
 
 }

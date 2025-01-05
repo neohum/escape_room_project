@@ -41,6 +41,7 @@ Route::middleware('auth')->group(function () {
     Route::POST('/game_next_edit/first_update/{id}', [GameNextEditController::class, 'first_update'])->name('game_next_edit.first_update');
     Route::GET('/game_next_edit/edit/{prev_id}', [GameNextEditController::class, 'edit'])->name('game_next_edit.edit');
     Route::GET('/game_next_edit/show/{id}', [GameNextEditController::class, 'show'])->name('game_next_edit.show');
+    Route::GET('/game_next_edit/show_next/{prev_id}', [GameNextEditController::class, 'show_next'])->name('game_next_edit.show_next');
     Route::POST('/game_next_edit/update/{prev_id}', [GameNextEditController::class, 'update'])->name('game_next_edit.update');
     Route::DELETE('/game_next_edit/delete/{id}', [GameNextEditController::class, 'delete'])->name('game_next_edit.delete');
 
