@@ -38,128 +38,26 @@ class GameMakerNextController extends Controller
     {
         //
         $uuid = Uuid::uuid4()->toString();
-        if($request->select == '1'){
-
-            DB::table('game_makers')->insert([
-                'user_id' => Auth::id(),
-                'title' => $request->title,
-                'editorjs' => $request->editorjs,
-                'select' => $request->select,
-                'question' => $request->question,
-                'answer1' => $request->check1,
-                'answer2' => $request->check2,
-                'answer3' => $request->check3,
-                'answer4' => $request->check4,
-                'answer5' => $request->check5,
-                'choice1' => $request->radio1,
-                'choice2' => $request->radio2,
-                'choice3' => $request->radio3,
-                'choice4' => $request->radio4,
-                'choice5' => $request->radio5,
-                'prev_id' => $request->prev_id,
-                'next_id' => $uuid,
-                'created_at' => now(),
-                'updated_at' => now()
-            ]
-          );
-          return to_route('game_maker_next', ['prev_id' => $uuid]);
-        } elseif($request->select == '2'){
-            DB::table('game_makers')->insert([
-              'user_id' => Auth::id(),
-                'title' => $request->title,
-              'editorjs' => $request->editorjs,
-              'select' => $request->select,
-              'question' => $request->question,
-              'answer1' => $request->check1,
-              'answer2' => $request->check2,
-              'answer3' => $request->check3,
-              'answer4' => $request->check4,
-              'answer5' => $request->check5,
-              'choice1' => $request->radio1,
-              'choice2' => $request->radio2,
-              'choice3' => $request->radio3,
-              'choice4' => $request->radio4,
-              'choice5' => $request->radio5,
-              'prev_id' => $request->prev_id,
-              'next_id' => $uuid,
-              'created_at' => now(),
-              'updated_at' => now()
-            ]);
-            return to_route('game_maker_next', ['prev_id' => $uuid]);
-        } elseif($request->select == '3'){
-            DB::table('game_makers')->insert([
-              'user_id' => Auth::id(),
-                'title' => $request->title,
-              'editorjs' => $request->editorjs,
-              'select' => $request->select,
-              'question' => $request->question,
-              'answer1' => $request->check1,
-              'answer2' => $request->check2,
-              'answer3' => $request->check3,
-              'answer4' => $request->check4,
-              'answer5' => $request->check5,
-              'choice1' => $request->radio1,
-              'choice2' => $request->radio2,
-              'choice3' => $request->radio3,
-              'choice4' => $request->radio4,
-              'choice5' => $request->radio5,
-              'prev_id' => $request->prev_id,
-              'next_id' => $uuid,
-              'created_at' => now(),
-              'updated_at' => now()
-            ]);
-            return to_route('game_maker_next', ['prev_id' => $uuid]);
-        } elseif($request->select == '4'){
-            DB::table('game_makers')->insert([
-              'user_id' => Auth::id(),
-                'title' => $request->title,
-              'editorjs' => $request->editorjs,
-              'select' => $request->select,
-              'question' => $request->question,
-              'answer1' => $request->check1,
-              'answer2' => $request->check2,
-              'answer3' => $request->check3,
-              'answer4' => $request->check4,
-              'answer5' => $request->check5,
-              'choice1' => $request->radio1,
-              'choice2' => $request->radio2,
-              'choice3' => $request->radio3,
-              'choice4' => $request->radio4,
-              'choice5' => $request->radio5,
-              'prev_id' => $request->prev_id,
-              'next_id' => $uuid,
-              'created_at' => now(),
-              'updated_at' => now()
-            ]);
-            return to_route('game_maker_next', ['prev_id' => $uuid]);
+        if ($request->select == '1') {
+            return $this->extracted1($request, $uuid);
+        } elseif ($request->select == '2') {
+            return $this->extracted1($request, $uuid);
+        } elseif ($request->select == '3') {
+            return $this->extracted1($request, $uuid);
+        } elseif ($request->select == '4') {
+            return $this->extracted1($request, $uuid);
+        } elseif ($request->select == '5') {
+            return $this->extracted1($request, $uuid);
         } else {
-
-            DB::table('game_makers')->insert([
-              'user_id' => Auth::id(),
-                'title' => $request->title,
-              'editorjs' => $request->editorjs,
-              'question' => $request->question,
-              'select' => $request->select,
-              'answer1' => $request->check1,
-              'answer2' => $request->check2,
-              'answer3' => $request->check3,
-              'answer4' => $request->check4,
-              'answer5' => $request->check5,
-              'choice1' => $request->radio1,
-              'choice2' => $request->radio2,
-              'choice3' => $request->radio3,
-              'choice4' => $request->radio4,
-              'choice5' => $request->radio5,
-              'prev_id' => $request->prev_id,
-              'next_id' => $uuid,
-              'created_at' => now(),
-              'updated_at' => now()
-            ]);
-            return to_route('game_maker_next', ['prev_id' => $uuid]);
+            return $this->extracted1($request, $uuid);
         }
 
 
     }
+
+
+
+
 
     /**
      * Display the specified resource.
@@ -253,126 +151,9 @@ class GameMakerNextController extends Controller
      */
     public function finish(Request $request)
     {
-        $uuid = Uuid::uuid4()->toString();
-        if($request->select == '1'){
+        //$uuid = Uuid::uuid4()->toString();
+        return $this->extracted($request);
 
-            DB::table('game_makers')->insert([
-                    'user_id' => Auth::id(),
-                    'title' => $request->title,
-                    'editorjs' => $request->editorjs,
-                    'select' => $request->select,
-                    'question' => $request->question,
-                    'answer1' => $request->check1,
-                    'answer2' => $request->check2,
-                    'answer3' => $request->check3,
-                    'answer4' => $request->check4,
-                    'answer5' => $request->check5,
-                    'choice1' => $request->radio1,
-                    'choice2' => $request->radio2,
-                    'choice3' => $request->radio3,
-                    'choice4' => $request->radio4,
-                    'choice5' => $request->radio5,
-                    'prev_id' => $request->prev_id,
-                    'next_id' => $uuid,
-                    'created_at' => now(),
-                    'updated_at' => now()
-                ]
-            );
-            return to_route('dashboard');
-        } elseif($request->select == '2'){
-            DB::table('game_makers')->insert([
-                'user_id' => Auth::id(),
-                'title' => $request->title,
-                'editorjs' => $request->editorjs,
-                'select' => $request->select,
-                'question' => $request->question,
-                'answer1' => $request->check1,
-                'answer2' => $request->check2,
-                'answer3' => $request->check3,
-                'answer4' => $request->check4,
-                'answer5' => $request->check5,
-                'choice1' => $request->radio1,
-                'choice2' => $request->radio2,
-                'choice3' => $request->radio3,
-                'choice4' => $request->radio4,
-                'choice5' => $request->radio5,
-                'prev_id' => $request->prev_id,
-                'next_id' => $uuid,
-                'created_at' => now(),
-                'updated_at' => now()
-            ]);
-            return to_route('dashboard');
-        } elseif($request->select == '3'){
-            DB::table('game_makers')->insert([
-                'user_id' => Auth::id(),
-                'title' => $request->title,
-                'editorjs' => $request->editorjs,
-                'select' => $request->select,
-                'question' => $request->question,
-                'answer1' => $request->check1,
-                'answer2' => $request->check2,
-                'answer3' => $request->check3,
-                'answer4' => $request->check4,
-                'answer5' => $request->check5,
-                'choice1' => $request->radio1,
-                'choice2' => $request->radio2,
-                'choice3' => $request->radio3,
-                'choice4' => $request->radio4,
-                'choice5' => $request->radio5,
-                'prev_id' => $request->prev_id,
-                'next_id' => $uuid,
-                'created_at' => now(),
-                'updated_at' => now()
-            ]);
-            return to_route('dashboard');
-        } elseif($request->select == '4'){
-            DB::table('game_makers')->insert([
-                'user_id' => Auth::id(),
-                'title' => $request->title,
-                'editorjs' => $request->editorjs,
-                'select' => $request->select,
-                'question' => $request->question,
-                'answer1' => $request->check1,
-                'answer2' => $request->check2,
-                'answer3' => $request->check3,
-                'answer4' => $request->check4,
-                'answer5' => $request->check5,
-                'choice1' => $request->radio1,
-                'choice2' => $request->radio2,
-                'choice3' => $request->radio3,
-                'choice4' => $request->radio4,
-                'choice5' => $request->radio5,
-                'prev_id' => $request->prev_id,
-                'next_id' => $uuid,
-                'created_at' => now(),
-                'updated_at' => now()
-            ]);
-            return to_route('dashboard');
-        } else {
-
-            DB::table('game_makers')->insert([
-                'user_id' => Auth::id(),
-                'title' => $request->title,
-                'editorjs' => $request->editorjs,
-                'question' => $request->question,
-                'select' => $request->select,
-                'answer1' => $request->check1,
-                'answer2' => $request->check2,
-                'answer3' => $request->check3,
-                'answer4' => $request->check4,
-                'answer5' => $request->check5,
-                'choice1' => $request->radio1,
-                'choice2' => $request->radio2,
-                'choice3' => $request->radio3,
-                'choice4' => $request->radio4,
-                'choice5' => $request->radio5,
-                'prev_id' => $request->prev_id,
-                'next_id' => $uuid,
-                'created_at' => now(),
-                'updated_at' => now()
-            ]);
-            return to_route('dashboard');
-        }
     }
 
     /**
@@ -381,5 +162,99 @@ class GameMakerNextController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    /**
+     * @param Request $request
+     * @param string $uuid
+     * @return RedirectResponse
+     */
+    public function extracted(Request $request): RedirectResponse
+    {
+        DB::table('game_makers')->insert([
+                'user_id' => Auth::id(),
+                'title' => $request->title,
+                'editorjs' => $request->editorjs,
+                'select' => $request->select,
+                'question' => $request->question,
+                'answer1' => $request->check1,
+                'answer2' => $request->check2,
+                'answer3' => $request->check3,
+                'answer4' => $request->check4,
+                'answer5' => $request->check5,
+                'choice1' => $request->radio1,
+                'choice2' => $request->radio2,
+                'choice3' => $request->radio3,
+                'choice4' => $request->radio4,
+                'choice5' => $request->radio5,
+                'prev_id' => $request->prev_id,
+                'next_id' => '0',
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        );
+        return to_route('dashboard');
+    }
+
+    /**
+     * @param Request $request
+     * @param string $uuid
+     * @return void
+     */
+    public function getInsert(Request $request, string $uuid): void
+    {
+        DB::table('game_makers')->insert([
+            'user_id' => Auth::id(),
+            'title' => $request->title,
+            'editorjs' => $request->editorjs,
+            'question' => $request->question,
+            'select' => $request->select,
+            'answer1' => $request->check1,
+            'answer2' => $request->check2,
+            'answer3' => $request->check3,
+            'answer4' => $request->check4,
+            'answer5' => $request->check5,
+            'choice1' => $request->radio1,
+            'choice2' => $request->radio2,
+            'choice3' => $request->radio3,
+            'choice4' => $request->radio4,
+            'choice5' => $request->radio5,
+            'prev_id' => $request->prev_id,
+            'next_id' => $uuid,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @param string $uuid
+     * @return RedirectResponse
+     */
+    public function extracted1(Request $request, string $uuid): RedirectResponse
+    {
+        DB::table('game_makers')->insert([
+                'user_id' => Auth::id(),
+                'title' => $request->title,
+                'editorjs' => $request->editorjs,
+                'select' => $request->select,
+                'question' => $request->question,
+                'answer1' => $request->check1,
+                'answer2' => $request->check2,
+                'answer3' => $request->check3,
+                'answer4' => $request->check4,
+                'answer5' => $request->check5,
+                'choice1' => $request->radio1,
+                'choice2' => $request->radio2,
+                'choice3' => $request->radio3,
+                'choice4' => $request->radio4,
+                'choice5' => $request->radio5,
+                'prev_id' => $request->prev_id,
+                'next_id' => $uuid,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        );
+        return to_route('game_maker_next', ['prev_id' => $uuid, 'title' => $request->title]);
     }
 }

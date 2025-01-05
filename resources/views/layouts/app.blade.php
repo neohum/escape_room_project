@@ -14,6 +14,7 @@
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-lite.min.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-lite.min.js"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
         @vite([
           'resources/css/app.css',
           'resources/js/app.js',
@@ -48,7 +49,7 @@
          <script type="text/javascript">
           $(document).ready(function () {
             $('#summernote').summernote({
-        
+
               placeholder: '내용을 작성해 주세요',
               tabsize: 2,
               height: 300,
@@ -63,10 +64,10 @@
               ]
             });
           })
-      
 
-      
-        
+
+
+
 
     </script>
       </body>
