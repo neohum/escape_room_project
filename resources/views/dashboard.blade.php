@@ -110,7 +110,7 @@
                                         </form>
 
                                         </div>
-                                    <a href="{{ route('game_next_edit.show',$q->id) }}" class="btn btn-primary mt-4 justify-end">미리 보기</a>
+                                    <a href="{{ route('game_next_edit.show',$q->id) }}" target="_blank" class="btn btn-primary mt-4 justify-end">미리 보기</a>
                                 </div>
                             </div>
                         </div>

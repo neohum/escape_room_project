@@ -6,7 +6,7 @@
         <div class="flex justify-between">
             <!-- Title for the page -->
             <h2 class="text-xl font-semibold leading-tight text-white">
-                {{ '방탈출 게임 ' }} <!-- Static title -->
+                {{ '방탈출 게임 만들기' }} <!-- Static title -->
             </h2>
             <!-- Link to add a new task -->
         </div>
@@ -17,12 +17,21 @@
             <div class="overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-white">
                     <!-- Title for uncompleted tasks -->
-                    <h3 class="mb-4 text-lg font-semibold leading-tight text-white-800">{{ $game_data->title }}</h3>
+                    <h3 class="mb-4 text-lg font-semibold leading-tight text-white-800">컨텐츠 생성 화면</h3>
 
                     <!-- Table to display uncompleted tasks -->
+                    <form action="{{ route('game_next_edit.first_update', ['id' => $game_data->id]) }}"  method="POST" class="mt-6 space" enctype="multipart/form-data">
 
-                        <div class = "mt-4">
-                         {!! $game_data->editorjs !!}
+                        @csrf
+                        <div class="bg-slate-800 text-white ">
+
+                            <h1 class="mt-4">활동명 </h1>
+                            <input type="text" name="title" class="input input-bordered w-full max-w-xs" value="{{ $game_data->title }}" disabled/>
+
+
+                        </div>
+                        <div class = "bg-white text-black mt-4">
+                            <textarea id="summernote" class="text-black bg-white mt-4" name="editorjs">{{ $game_data->editorjs }}</textarea>
                         </div>
 
                         <br>
@@ -36,11 +45,23 @@
 
                         <div class="justify-between flex flex-auto">
 
+                            <button type="submit" class="px-4 py-2 mt-4 text-sm font-semibold leading-5 text-white transition duration-150 ease-in-out rounded-lg bg-violet-600 hover:bg-violet-500 focus:outline-none focus:shadow-outline-violet active:bg-violet-600">
+                                {{ '저장하기' }}
+                            </button>
 
-                            <a href="{{ route('game_next_edit.show_next', ['prev_id' => $game_data->next_id]) }}" class="px-4 py-2 mt-4 text-sm font-semibold leading-5 text-white transition duration-150 ease-in-out bg-violet-600 rounded-lg px- hover:bg-violet-500 focus:outline-none focus:shadow-outline-violet active:bg-violet-600">
-                                {{ '다음 페이지로 가기' }}
+                            <a href="{{ route('game_next_edit.edit', ['prev_id' => $game_data->next_id]) }}" class="px-4 py-2 mt-4 text-sm font-semibold leading-5 text-white transition duration-150 ease-in-out bg-violet-600 rounded-lg px- hover:bg-violet-500 focus:outline-none focus:shadow-outline-violet active:bg-violet-600">
+                                {{ '다음 페이지 편집하기' }}
                             </a>
                         </div>
+
+                        <div class="justify-between flex flex-auto">
+
+
+
+                        </div>
+
+                    </form>
+
 
                 </div>
             </div>
