@@ -31,7 +31,7 @@
                             <x-input-label for="description" value="게임 설명" />
 
                         </div>
-                        <div class="text-black bg-white ">
+                        <div class="text-black bg-white mt-4">
 
                           <textarea id="summernote" class="text-black bg-white" name="editorjs" required autofocus></textarea>
                         </div>

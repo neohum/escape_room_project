@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Ramsey\Uuid\Uuid;
 use Illuminate\Support\Facades\Storage;
 use App\Models\GameMaker;
@@ -38,22 +39,21 @@ class GameMakerController extends Controller
 
 
         $uuid = Uuid::uuid4()->toString();
-        $validated['title'] = $request->title;
-        $validated['editorjs'] = $request->editorjs;
-
-        $validated['user_id'] = Auth::user()->id;
-        $validated['prev_id'] = '0';
-        $validated['next_id'] = $uuid;
-
-
-
-        $create = GameMaker::create($validated);
+        DB::table('game_makers')->insert([
+            'user_id' => Auth::id(),
+            'title' => $request->title,
+            'editorjs' => $request->editorjs,
+            'prev_id' => '0',
+            'next_id' => $uuid,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
 
         // if($create) {
         //     session()->flash('notification.success', 'Game created successfully!');
         //     return redirect()->route('game.index');
         // }
-        return to_route('game_maker_next', ['prev_id' => $uuid]);
+        return to_route('game_maker_next', ['prev_id' => $uuid, $request->title]);
 
       // return abort(500);
     }

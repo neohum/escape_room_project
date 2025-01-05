@@ -19,10 +19,11 @@
                      <!-- Title for uncompleted tasks -->
                     <h3 class="mb-4 text-lg font-semibold leading-tight text-white-800">컨텐츠 생성 화면</h3>
                     <!-- Table to display uncompleted tasks -->
+                    제목 : {{ $title }}
                     <form action="{{ route('game_maker_next.store') }}" method="post" class="mt-6 space" enctype="multipart/form-data">
                         @csrf
                         <div class="text-black bg-white ">
-
+                          <input hidden name="title" value="{{ $title }}"/>
                           <textarea id="summernote" class="text-black bg-white" name="editorjs"></textarea>
                         </div>
 
@@ -52,7 +53,14 @@
                               </button>
                           </div>
                             <div class="text-red-600">
-                                "종료 하기를 클릭 하시면 현재 페이지도 저장이 됩니다.
+                                "문제 내기를 종료 하시려면 "다음 페이지 만들기"를 클릭 후 다음 페이지에서 "종료하기" 버튼을 클릭해주세요.
+
+                            </div>
+                            <div class="flex-auto">
+
+                                <a href="{{ route('dashboard') }}" class="px-4 py-2 mt-4 text-sm font-semibold leading-5 text-white transition duration-150 ease-in-out rounded-lg bg-red-600 hover:bg-red-500 focus:outline-none focus:shadow-outline-red active:bg-red-600">
+                                    {{ '종료하기' }}
+                                </a>
                             </div>
 
 
@@ -60,29 +68,6 @@
 
 
                         </div>
-                    </form>
-                    <form method="post" action="{{ route('game_maker_next.finish') }}" >
-                        @csrf
-                        <input hidden name="title">
-                        <input hidden name="user_id">
-                        <input hidden name="editorjs" >
-                        <input hidden name="select" >
-                        <input hidden name="question" >
-                        <input hidden name="radio1">
-                        <input hidden name="radio2" >
-                        <input hidden name="radio3" >
-                        <input hidden name="radio4" >
-                        <input hidden name="radio5" >
-                        <input hidden name="answer1" >
-                        <input hidden name="answer2" >
-                        <input hidden name="answer3" >
-                        <input hidden name="answer4" >
-                        <input hidden name="answer5" >
-                        <input hidden name="next_id" >
-                        <input hidden name="prev_id">
-                        <button type="submit" class="px-4 py-2 mt-4 text-sm font-semibold leading-5 text-white transition duration-150 ease-in-out bg-red-600 rounded-lg px- hover:bg-red-500 focus:outline-none focus:shadow-outline-violet active:bg-red-600">
-                            {{ '종료하기' }}
-                        </button>
                     </form>
 
                 </div>
