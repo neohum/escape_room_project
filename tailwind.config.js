@@ -7,13 +7,8 @@ export default {
     './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
     './storage/framework/views/*.php',
     './resources/views/**/*.blade.php',
-    './node_modules/flyonui/dist/js/*.js',
-    './node_modules/@editors/editorsjs/**/*.js',
+
   ],
-  
-  flyonui: {
-    vendors: true,
-  },
 
 
     theme: {
@@ -27,7 +22,6 @@ export default {
     plugins: [
       forms,
       require('daisyui'),
-      require("flyonui"),
-      require("flyonui/plugin"),
+
     ],
 };
