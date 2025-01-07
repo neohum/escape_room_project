@@ -12,10 +12,11 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('방탈출 게임 리스트') }}
                     </x-nav-link>
-                 
+
                     <x-nav-link :href="route('game.index')" :active="request()->routeIs('game.index')">
                         {{ __('방탈출 게임 만들기') }}
                     </x-nav-link>
@@ -74,7 +75,7 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
-            
+
             <x-responsive-nav-link :href="route('game.index')" :active="request()->routeIs('game.index')">
                 {{ __('방탈출 게임 만들기') }}
             </x-responsive-nav-link>
@@ -91,7 +92,7 @@
                 <x-responsive-nav-link :href="route('profile.edit')">
                     {{ __('Profile') }}
                 </x-responsive-nav-link>
-                
+
 
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">

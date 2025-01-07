@@ -73,23 +73,23 @@
             var value = select.options[select.selectedIndex].value;
             if(value == 1) {
                 document.getElementById('input_area').innerHTML = `
-                    <x-input-5radio name="radio" id="radio" required autofocus />
+                    <x-input-5radio name="radio" id="radio"  />
                 `;
             } else if(value == 2) {
                 document.getElementById('input_area').innerHTML = `
-                    <x-input-3radio name="radio" id="radio" required autofocus />
+                    <x-input-3radio name="radio" id="radio"  />
                 `;
             } else if(value == 3) {
                 document.getElementById('input_area').innerHTML = `
-                    <x-input-2radio name="radio" id="radio" required autofocus />
+                    <x-input-2radio name="radio" id="radio"  />
                 `;
             } else if(value == 4) {
                 document.getElementById('input_area').innerHTML = `
-                    <x-input-5checkbox name="radio" id="radio" required autofocus />
+                    <x-input-5checkbox name="radio" id="radio" />
                 `;
             } else if(value == 5) {
                 document.getElementById('input_area').innerHTML = `
-                    <x-input-one-answer name="radio" id="radio" required autofocus />
+                    <x-input-one-answer name="radio" id="radio"  />
                 `;
             }
         });
