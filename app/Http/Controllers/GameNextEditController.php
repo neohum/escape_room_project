@@ -125,20 +125,22 @@ class GameNextEditController extends Controller
             ->where('id', $request->id)
             ->get();
 
-        $game_data = json_decode($game);
-        return view('game_next_edit.show', ['game_data' => $game_data[0]]);
+        $game_maker = json_decode($game);
+        return view('game_next_edit.show', ['game_maker' => $game_maker[0]]);
     }
 
     public function show_next(Request $request)
     {
 
-        $game_data = DB::table('game_makers')
+        $game_maker = DB::table('game_makers')
             ->where('prev_id', $request->prev_id)
             ->get();
-        if ($game_data->count() === 0) {
-            echo('<button>finish</button>');
+        if ($game_maker->count() === 0) {
+            return view('game_next_edit.show_end');
         } else {
-            return view('game_next_edit.show', ['game_data' => $game_data[0]]);
+
+
+            return view('game_next_edit.show', ['game_maker' => $game_maker[0]]);
 
         }
 

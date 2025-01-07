@@ -8,13 +8,13 @@
     <div class="py-12">
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div class="overflow-hidden bg-white shadow-sm dark:bg-gray-800 sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
+                <div class="p-6 text-gray-600 dark:text-gray-100">
                     @foreach( $query as $q)
-                        <div class="card bg-base-100 w-96 shadow-xl " >
+                        <div class="bg-base-100  shadow-xl " >
 
                             <div class="">
 
-                                <div class="form-control w-10">
+                                <div >
 
                                     <label class=" card-title label cursor-pointer px-6 py-4">
 
@@ -42,7 +42,7 @@
                                 </div>
                             </div>
                             <figure class="card-body px-6 py-4">
-                                {!!html_entity_decode($q->editorjs)!!}
+                                {!!$q->editorjs!!}
                             </figure>
                             <br>
                             <div class="card-body">

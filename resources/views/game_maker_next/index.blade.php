@@ -24,13 +24,13 @@
                         @csrf
                         <div class="text-black bg-white ">
                           <input hidden name="title" value="{{ $title }}"/>
-                          <textarea id="summernote" class="text-black bg-white" name="editorjs"></textarea>
+                          <textarea id="summernote" name="editorjs"></textarea>
                         </div>
 
                         <div class="mt-4">
-                            <h2 class="text-lg font-semibold leading-tight text-white-800">원하는 문제의 형태를 선택하세요</h2>
+                            <h2 class="text-lg font-semibold leading-tight text-white-800 mt-4">원하는 문제의 형태를 선택하세요</h2>
 
-                            <select name="select" id="select" class="block w-full py-4 mt-10 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-900 dark:border-gray-600 dark:focus:border-indigo-500 dark:focus:ring-indigo-500 dark:focus:ring-opacity-50">
+                            <select name="select" id="select" class="block w-full py-4 mt-4 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-900 dark:border-gray-600 dark:focus:border-indigo-500 dark:focus:ring-indigo-500 dark:focus:ring-opacity-50">
                                 <option value="0">문제 유형 선택</option>
                                 <option value="1" >5지선다</option>
                                 <option value="2">3지선다</option>
@@ -82,6 +82,7 @@
                 document.getElementById('input_area').innerHTML = `
                     <x-input-5radio name="radio" id="radio" required autofocus />
                 `;
+
             } else if(value == 2) {
                 document.getElementById('input_area').innerHTML = `
                     <x-input-3radio name="radio" id="radio" required autofocus />
@@ -102,6 +103,43 @@
         });
 
 
+
+        $(document).on('change', "input:radio[name='radio1']", function() {
+            $("#radio1").prop('checked', true).prop('required', true);
+            $("#radio2").prop('checked', false);
+            $("#radio3").prop('checked', false);
+            $("#radio4").prop('checked', false);
+            $("#radio5").prop('checked', false);
+        });
+        $(document).on('change', "input:radio[name='radio2']", function() {
+            $("#radio1").prop('checked', false);
+            $("#radio2").prop('checked', true);
+            $("#radio3").prop('checked', false);
+            $("#radio4").prop('checked', false);
+            $("#radio5").prop('checked', false);
+
+        });
+        $(document).on('change', "input:radio[name='radio3']", function() {
+            $("#radio1").prop('checked', false);
+            $("#radio2").prop('checked', false);
+            $("#radio3").prop('checked', true);
+            $("#radio4").prop('checked', false);
+            $("#radio5").prop('checked', false);
+        });
+        $(document).on('change', "input:radio[name='radio4']", function() {
+            $("#radio1").prop('checked', false);
+            $("#radio2").prop('checked', false);
+            $("#radio3").prop('checked', false);
+            $("#radio4").prop('checked', true);
+            $("#radio5").prop('checked', false);
+        });
+        $(document).on('change', "input:radio[name='radio5']", function() {
+            $("#radio1").prop('checked', false);
+            $("#radio2").prop('checked', false);
+            $("#radio3").prop('checked', false);
+            $("#radio4").prop('checked', false);
+            $("#radio5").prop('checked', true);
+        });
 
     </script>
 </x-app-layout>

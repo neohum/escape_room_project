@@ -94,6 +94,43 @@
             }
         });
 
+        $(document).onplay('change', "input:radio[name='radio1']", function() {
+            $("#radio1").prop('checked', true).prop('required', true);
+            $("#radio2").prop('checked', false);
+            $("#radio3").prop('checked', false);
+            $("#radio4").prop('checked', false);
+            $("#radio5").prop('checked', false);
+        });
+        $(document).onplay('change', "input:radio[name='radio2']", function() {
+            $("#radio1").prop('checked', false);
+            $("#radio2").prop('checked', true);
+            $("#radio3").prop('checked', false);
+            $("#radio4").prop('checked', false);
+            $("#radio5").prop('checked', false);
+
+        });
+        $(document).onplay('change', "input:radio[name='radio3']", function() {
+            $("#radio1").prop('checked', false);
+            $("#radio2").prop('checked', false);
+            $("#radio3").prop('checked', true);
+            $("#radio4").prop('checked', false);
+            $("#radio5").prop('checked', false);
+        });
+        $(document).onplay('change', "input:radio[name='radio4']", function() {
+            $("#radio1").prop('checked', false);
+            $("#radio2").prop('checked', false);
+            $("#radio3").prop('checked', false);
+            $("#radio4").prop('checked', true);
+            $("#radio5").prop('checked', false);
+        });
+        $(document).onplay('change', "input:radio[name='radio5']", function() {
+            $("#radio1").prop('checked', false);
+            $("#radio2").prop('checked', false);
+            $("#radio3").prop('checked', false);
+            $("#radio4").prop('checked', false);
+            $("#radio5").prop('checked', true);
+        });
+
 
 
     </script>

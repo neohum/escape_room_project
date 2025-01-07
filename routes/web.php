@@ -6,9 +6,15 @@ use App\Http\Controllers\TaskController;
 use App\Http\Controllers\GameMakerController;
 use App\Http\Controllers\GameMakerNextController;
 use App\Http\Controllers\GameNextEditController;
+use App\Http\Controllers\FrontShowController;
+use function Pest\Laravel\get;
+
+//Route::get('/', function () {
+//    return GET('front_show.index', [FrontShowController::class, 'index']);
+//});
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 Route::get('/dashboard', [App\Http\Controllers\DashBoardController::class, 'index'])
@@ -46,5 +52,6 @@ Route::middleware('auth')->group(function () {
     Route::DELETE('/game_next_edit/delete/{id}', [GameNextEditController::class, 'delete'])->name('game_next_edit.delete');
 
 });
+
 
 require __DIR__.'/auth.php';
