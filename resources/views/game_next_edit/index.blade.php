@@ -23,10 +23,10 @@
                     <form action="{{ route('game_next_edit.first_update', ['id' => $game_data->id]) }}"  method="POST" class="mt-6 space" enctype="multipart/form-data">
 
                         @csrf
-                        <div class="bg-slate-800 text-white ">
+                        <div class="bg-slate-800 text-white flex flex-row  p-4 rounded-lg shadow-lg">
 
-                            <h1 class="mt-4">활동명 </h1>
-                            <input type="text" name="title" class="input input-bordered w-full max-w-xs" value="{{ $game_data->title }}" disabled/>
+                            <h1 class="mt-4">활동명 : </h1>
+                            <input type="text" name="title" class="input input-bordered w-full max-w-xs ml-4" value="{{ $game_data->title }}" disabled/>
 
 
                         </div>

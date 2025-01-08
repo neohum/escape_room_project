@@ -8,18 +8,19 @@ use App\Http\Controllers\GameMakerNextController;
 use App\Http\Controllers\GameNextEditController;
 use App\Http\Controllers\FrontShowController;
 use function Pest\Laravel\get;
+use App\Http\Controllers\DashBoardController;
 
 //Route::get('/', function () {
 //    return GET('front_show.index', [FrontShowController::class, 'index']);
 //});
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [FrontShowController::class, 'index']);
+Route::GET('/show/show/{id}', [FrontShowController::class, 'show'])->name('show.show');
+Route::GET('/show/show_next/{prev_id}', [FrontShowController::class, 'show_next'])->name('show.show_next');
 
-Route::get('/dashboard', [App\Http\Controllers\DashBoardController::class, 'index'])
+Route::get('/dashboard', [DashBoardController::class, 'index'])
 ->middleware(['auth', 'verified'])->name('dashboard');
-Route::POST('/dashboard/store', [App\Http\Controllers\DashBoardController::class, 'store'])
+Route::POST('/dashboard/store', [DashBoardController::class, 'store'])
 ->middleware(['auth', 'verified'])->name('dashboard.store');
 
 Route::middleware('auth')->group(function () {
@@ -38,11 +39,6 @@ Route::middleware('auth')->group(function () {
     Route::POST('/game_maker_next/store', [GameMakerNextController::class, 'store'])->name('game_maker_next.store');
     Route::POST('/game_maker_next/finish', [GameMakerNextController::class, 'finish'])->name('game_maker_next.finish');
     Route::POST('/game_maker_next/save/{prev_id}', [GameMakerNextController::class, 'save'])->name('game_maker_next.save');
-    //Route::get('/game_maker_next/show/{id}', [GameMakerNextController::class, 'show'])->name('game_maker_next.show');
-    //Route::get('/game_maker_next/edit/{id}', [GameMakerNextController::class, 'edit'])->name('game_maker_next.edit');
-    //Route::POST('/game_maker_next/update/{id}', [GameMakerNextController::class, 'update'])->name('game_maker_next.update');
-    //Route::get('/game_maker_next/editnext/{prev_id}', [GameMakerNextController::class, 'editnext'])->name('game_maker_next.editnext');
-    //Route::POST('/game_maker_next/editnextupdate/{prev_id}', [GameMakerNextController::class, 'editnextupdate'])->name('game_maker_next.editnextupdate');
     Route::GET('/game_next_edit/{id}', [GameNextEditController::class, 'index'])->name('game_next_edit.index');
     Route::POST('/game_next_edit/first_update/{id}', [GameNextEditController::class, 'first_update'])->name('game_next_edit.first_update');
     Route::GET('/game_next_edit/edit/{prev_id}', [GameNextEditController::class, 'edit'])->name('game_next_edit.edit');
@@ -52,6 +48,9 @@ Route::middleware('auth')->group(function () {
     Route::DELETE('/game_next_edit/delete/{id}', [GameNextEditController::class, 'delete'])->name('game_next_edit.delete');
 
 });
+
+
+
 
 
 require __DIR__.'/auth.php';

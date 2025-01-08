@@ -22,22 +22,23 @@
 <body class="font-sans antialiased dark:bg-black dark:text-white/50">
 <div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
 
-    <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
-            <header class="grid  items-center gap-2 py-10 ">
+    <div class="relative min-h-screen flex flex-col items-center justify-center selection:bg-[#FF2D20] selection:text-white">
+        <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
+            <header class="grid grid-cols items-center gap-2 py-4 lg:grid-cols-3flex-col">
 
                 @if (Route::has('login'))
-                    <nav class="-mx-3 flex flex-3 flex-row justify-end">
+                    <nav class="-mx-3 flex flex-1 justify-end">
                         @auth
                             <a
                                 href="{{ url('/dashboard') }}"
-                                class="rounded-md px-3 py-2 text-black ring-3 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+                                class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
                             >
                                 Dashboard
                             </a>
                         @else
                             <a
                                 href="{{ route('login') }}"
-                                class="rounded-md px-3 py-2 text-black ring-2 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+                                class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
                             >
                                 Log in
                             </a>
@@ -45,7 +46,7 @@
                             @if (Route::has('register'))
                                 <a
                                     href="{{ route('register') }}"
-                                    class="rounded-md px-3 py-2 text-black ring-3 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+                                    class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
                                 >
                                     Register
                                 </a>
@@ -57,44 +58,66 @@
 
             <div class="py-12">
                 <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
-                    <div class="overflow-hidden bg-white shadow-sm dark:bg-gray-800 sm:rounded-lg">
-                        <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <div class="overflow-hidden w-full bg-white shadow-sm dark:bg-gray-800 sm:rounded-lg">
+                        <div class="p-6 text-gray-600 dark:text-gray-100">
 
-                                <div class="card bg-base-100 w-full shadow-xl " >
+                            {{ $query }}
+                            @if ($query[0])
+                            @foreach( $query as $q)
+                                <div class="bg-base-100  shadow-xl " >
 
-                                    <div class="w-full">
+                                    <div class="">
 
-                                        <div class="form-control w-90">
+                                        <div >
 
-                                            <label class=" card-title label cursor-pointer px-6 py-4 flex-row">
-
-                                                <h2 class="px-6 py-4">활동명 : </h2>
-
-
+                                            <label class=" card-title label cursor-pointer px-6 py-4">
+                                                <h2 class="px-6 py-4">활동명 : {{ $q->title }}</h2>
                                             </label>
                                         </div>
                                     </div>
-
+                                    <figure class="card-body px-6 py-4">
+                                        {!!$q->editorjs!!}
+                                    </figure>
                                     <br>
-                                    <div class="card-body">
-                                        <div class="card-actions justify-center flex flex-auto px-6 py-4">
-                                            <a  class="btn btn-primary mt-4">참여하기</a>
-
-
-
-
+                                    <div>
+                                        <div class="flex justify-center">
+                                            <div class="flex flex-row items-center">
+                                                <div class="flex-shrink-0 mt-4">
+                                                    <a href="{{ route('show.show', $q->id) }}" class="btn btn-primary mt-4 justify-end">참여하기</a>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="p-6 text-white">
 
                                 </div>
+{{--                                @endif--}}
+                            @endforeach
+                                <div class="join">
+                                    {{ $query->links() }}
+                                </div>
+                            @else
+                                <div class="bg-base-100  shadow-xl " >
+
+                                    <div class="">
+
+                                        <div >
+
+                                            <label class=" card-title label cursor-pointer px-6 py-4">
+
+                                                <h2 class="px-6 py-4">등록된 활동이 없습니다.</h2>
 
 
+
+                                            </label>
+
+
+                                </div>
+                            @endif
+                                <div class="p-6 text-white">
                         </div>
-                        <div class="join">
 
-                        </div>
 
                     </div>
                 </div>
@@ -106,7 +129,7 @@
                 published by 방탈출.COM, 2025
             </footer>
         </div>
-
+    </div>
 </div>
 </body>
 </html>
