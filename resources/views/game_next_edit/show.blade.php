@@ -35,11 +35,11 @@
                         <div id="input_area"></div>
                         <div class="flex flex-col mt-4">
                             @if($game_maker->prev_id == 0)
-                                <a href="{{ route('game_next_edit.show_next', ['prev_id' => $game_maker->next_id]) }}" class="px-4 py-2 mt-4 text-sm w-40 font-semibold leading-5 text-white transition duration-150 ease-in-out bg-violet-600 rounded-lg hover:bg-violet-500 focus:outline-none focus:shadow-outline-violet active:bg-violet-600">
+                                <a href="{{ route('show.show_next', ['prev_id' => $game_maker->next_id]) }}" class="px-4 py-2 mt-4 text-sm w-40 font-semibold leading-5 text-white transition duration-150 ease-in-out bg-violet-600 rounded-lg hover:bg-violet-500 focus:outline-none focus:shadow-outline-violet active:bg-violet-600">
                                     {{ '다음 페이지로 가기' }}
                                 </a>
                             @elseif($game_maker->select == 0)
-                                <a href="{{ route('game_next_edit.show_next', ['prev_id' => $game_maker->next_id]) }}" class="px-4 py-2 mt-4 text-sm w-40 font-semibold leading-5 text-white transition duration-150 ease-in-out bg-violet-600 rounded-lg hover:bg-violet-500 focus:outline-none focus:shadow-outline-violet active:bg-violet-600">
+                                <a href="{{ route('show.show_next', ['prev_id' => $game_maker->next_id]) }}" class="px-4 py-2 mt-4 text-sm w-40 font-semibold leading-5 text-white transition duration-150 ease-in-out bg-violet-600 rounded-lg hover:bg-violet-500 focus:outline-none focus:shadow-outline-violet active:bg-violet-600">
                                     {{ '다음 페이지로 가기' }}
                                 </a>
                             @elseif($game_maker->select == 1)
@@ -99,12 +99,15 @@
                                 </div>
                                 <br>
                                 <div>
-                                    1. <button name='check1' id='check1' class="btn btn-primary" onclick=check({{ $game_maker->choice1 }})>정답 : O</button><p>
+
+                                    1. <button name='check1' id='check1' class="btn btn-primary" onclick="check({{ $game_maker->choice1 }})">정답 : O</button><p>
+
 
                                 </div>
                                 <br>
                                 <div>
-                                    2. <button name='check2' id='check2' class="btn btn-primary" onclick=check({{ $game_maker->choice2 }})>정답 : X</button><p>
+
+                                    2. <button name='check2' id='check2' class="btn btn-primary" onclick="check({{ $game_maker->choice2 }})">정답 : X</button><p>
 
                                 </div>
 
@@ -169,38 +172,40 @@
 function check(choice) {
 
     switch (choice) {
+
         case 0:
-            document.getElementById('choice_area').innerHTML = `<a href="{{ route('game_next_edit.show_next', ['prev_id' => $game_maker->next_id]) }}" class="px-4 py-2 mt-4 text-sm font-semibold leading-5 text-white transition duration-150 ease-in-out bg-violet-600 rounded-lg hover:bg-violet-500 focus:outline-none focus:shadow-outline-violet active:bg-violet-600">
+            window.alert('오답입니다.')
+            document.getElementById('choice_area').innerHTML = `<a href="{{ route('show.show_next', ['prev_id' => $game_maker->next_id]) }}" class="px-4 py-2 mt-4 text-sm font-semibold leading-5 text-white transition duration-150 ease-in-out bg-violet-600 rounded-lg hover:bg-violet-500 focus:outline-none focus:shadow-outline-violet active:bg-violet-600">
                 {{ '다음 페이지로 가기' }}
             </a>`;
             break;
         case 1:
             window.alert('정답입니다.')
-            document.getElementById('choice_area').innerHTML = `<a href="{{ route('game_next_edit.show_next', ['prev_id' => $game_maker->next_id]) }}" class="px-4 py-2 mt-4 text-sm font-semibold leading-5 text-white transition duration-150 ease-in-out bg-violet-600 rounded-lg hover:bg-violet-500 focus:outline-none focus:shadow-outline-violet active:bg-violet-600">
+            document.getElementById('choice_area').innerHTML = `<a href="{{ route('show.show_next', ['prev_id' => $game_maker->next_id]) }}" class="px-4 py-2 mt-4 text-sm font-semibold leading-5 text-white transition duration-150 ease-in-out bg-violet-600 rounded-lg hover:bg-violet-500 focus:outline-none focus:shadow-outline-violet active:bg-violet-600">
                 {{ '다음 페이지로 가기' }}
             </a>`;
             break;
         case 2:
             window.alert('정답입니다.')
-            document.getElementById('choice_area').innerHTML = `<a href="{{ route('game_next_edit.show_next', ['prev_id' => $game_maker->next_id]) }}" class="px-4 py-2 mt-4 text-sm font-semibold leading-5 text-white transition duration-150 ease-in-out bg-violet-600 rounded-lg hover:bg-violet-500 focus:outline-none focus:shadow-outline-violet active:bg-violet-600">
+            document.getElementById('choice_area').innerHTML = `<a href="{{ route('show.show_next', ['prev_id' => $game_maker->next_id]) }}" class="px-4 py-2 mt-4 text-sm font-semibold leading-5 text-white transition duration-150 ease-in-out bg-violet-600 rounded-lg hover:bg-violet-500 focus:outline-none focus:shadow-outline-violet active:bg-violet-600">
                 {{ '다음 페이지로 가기' }}
             </a>`;
             break;
         case 3:
             window.alert('정답입니다.')
-            document.getElementById('choice_area').innerHTML = `<a href="{{ route('game_next_edit.show_next', ['prev_id' => $game_maker->next_id]) }}" class="px-4 py-2 mt-4 text-sm font-semibold leading-5 text-white transition duration-150 ease-in-out bg-violet-600 rounded-lg hover:bg-violet-500 focus:outline-none focus:shadow-outline-violet active:bg-violet-600">
+            document.getElementById('choice_area').innerHTML = `<a href="{{ route('show.show_next', ['prev_id' => $game_maker->next_id]) }}" class="px-4 py-2 mt-4 text-sm font-semibold leading-5 text-white transition duration-150 ease-in-out bg-violet-600 rounded-lg hover:bg-violet-500 focus:outline-none focus:shadow-outline-violet active:bg-violet-600">
                 {{ '다음 페이지로 가기' }}
             </a>`;
             break;
         case 4:
             window.alert('정답입니다.')
-            document.getElementById('choice_area').innerHTML = `<a href="{{ route('game_next_edit.show_next', ['prev_id' => $game_maker->next_id]) }}" class="px-4 py-2 mt-4 text-sm font-semibold leading-5 text-white transition duration-150 ease-in-out bg-violet-600 rounded-lg hover:bg-violet-500 focus:outline-none focus:shadow-outline-violet active:bg-violet-600">
+            document.getElementById('choice_area').innerHTML = `<a href="{{ route('show.show_next', ['prev_id' => $game_maker->next_id]) }}" class="px-4 py-2 mt-4 text-sm font-semibold leading-5 text-white transition duration-150 ease-in-out bg-violet-600 rounded-lg hover:bg-violet-500 focus:outline-none focus:shadow-outline-violet active:bg-violet-600">
                 {{ '다음 페이지로 가기' }}
             </a>`;
             break;
         case 5:
             window.alert('정답입니다.')
-            document.getElementById('choice_area').innerHTML = `<a href="{{ route('game_next_edit.show_next', ['prev_id' => $game_maker->next_id]) }}" class="px-4 py-2 mt-4 text-sm font-semibold leading-5 text-white transition duration-150 ease-in-out bg-violet-600 rounded-lg hover:bg-violet-500 focus:outline-none focus:shadow-outline-violet active:bg-violet-600">
+            document.getElementById('choice_area').innerHTML = `<a href="{{ route('show.show_next', ['prev_id' => $game_maker->next_id]) }}" class="px-4 py-2 mt-4 text-sm font-semibold leading-5 text-white transition duration-150 ease-in-out bg-violet-600 rounded-lg hover:bg-violet-500 focus:outline-none focus:shadow-outline-violet active:bg-violet-600">
                 {{ '다음 페이지로 가기' }}
             </a>`;
             break;
@@ -219,7 +224,7 @@ function checkAnswer(choice) {
         window.alert('오답입니다.');
     } else {
         window.alert('정답입니다.');
-        document.getElementById('choice_area').innerHTML = `<a href="{{ route('game_next_edit.show_next', ['prev_id' => $game_maker->next_id]) }}" class="px-4 py-2 mt-4 text-sm font-semibold leading-5 text-white transition duration-150 ease-in-out bg-violet-600 rounded-lg hover:bg-violet-500 focus:outline-none focus:shadow-outline-violet active:bg-violet-600">
+        document.getElementById('choice_area').innerHTML = `<a href="{{ route('show.show_next', ['prev_id' => $game_maker->next_id]) }}" class="px-4 py-2 mt-4 text-sm font-semibold leading-5 text-white transition duration-150 ease-in-out bg-violet-600 rounded-lg hover:bg-violet-500 focus:outline-none focus:shadow-outline-violet active:bg-violet-600">
             {{ '다음 페이지로 가기' }}
         </a>`;
     }
